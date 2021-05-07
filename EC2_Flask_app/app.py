@@ -21,7 +21,7 @@ def index():
                 "Unable to get a twit. Please make sure it's valid and try again."
             )
         try:
-            url = 'https://bbs4eeufai.execute-api.eu-central-1.amazonaws.com/v1/predict-twit-lier'
+            url = '{link to my API url}'
             response = requests.post(url, data = json.dumps({"data":txt}))
             result = [float(i) for i in str(response.content)[3:-2].split(', ')]
             results = [['Probability Fake', result[0]], ['Probability True', result[1]]]

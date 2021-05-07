@@ -14,6 +14,9 @@ from transformers import AutoTokenizer, AutoModel, TFAutoModel
 # Specify that endpoint accept JSON
 JSON_CONTENT_TYPE = 'application/json'
 
+# S3 folder where the data are stored
+PATH_TO_DATA = "s3://{insert your path to trainig data here}/train_data_cleaning.csv"
+
 # parameters for HuggingFace library
 MODEL = "cardiffnlp/twitter-roberta-base"
 TOKENIZER_EMB = AutoTokenizer.from_pretrained(MODEL)
@@ -77,9 +80,9 @@ if __name__ =='__main__':
     args, _ = parser.parse_known_args()
     
     # Derive embedings
-    initial_df = pd.read_csv("s3://dmitriaz/data/train_data_cleaning.csv", index_col=[0])
+    initial_df = pd.read_csv(PATH_TO_DATA, index_col=[0])
     embed_df = initial_df.text.apply(get_embedding)
-    embed_df = pd.DataFrame(embed_df.to_list(), index= embed_df.index)
+    embed_df = pd.DataFrame(embed_df.to_list(), index=embed_df.index)
 
     # Train model
     X = embed_df
