@@ -1,0 +1,23 @@
+---
+swagger: "2.0"
+info:
+  version: "2021-07-07T11:59:37Z"
+  title: "twitter-lyer"
+host: "bbs4eeufai.execute-api.eu-central-1.amazonaws.com"
+basePath: "/v1"
+schemes:
+- "https"
+paths:
+  /predict-twit-lier:
+    post:
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+definitions:
+  Empty:
+    type: "object"
+    title: "Empty Schema"
